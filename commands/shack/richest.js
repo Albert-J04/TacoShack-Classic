@@ -25,16 +25,14 @@ module.exports.run = async (bot, message, args) => {
     
     var string = stringarray.join("\n\n");
 
-    bot.fetchUser(bot.user).then(myUser => {
-        avatar = myUser.avatarURL;
-            
-    var leader = new Discord.RichEmbed()
+
+    var leader = new Discord.MessageEmbed()
     .setColor('#f400f0')
     .setAuthor("💸  Richest Taco Shacks  💸")
     .setDescription(`\n${string}`)
 
     message.channel.send({embed: leader});
-});
+
 
 
 }

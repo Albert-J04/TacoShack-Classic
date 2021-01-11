@@ -16,7 +16,7 @@ module.exports.run = async (bot, message, args) => {
         return total;
     }
 
-    var upgrades_embed = new Discord.RichEmbed()
+    var upgrades_embed = new Discord.MessageEmbed()
         .setTitle(`Upgrades`)
         .setColor('0x1ced31')
         .setThumbnail('https://cdn.dribbble.com/users/72556/screenshots/1711901/8bit-taco.jpg')

@@ -9,13 +9,13 @@ module.exports.run = async (bot, message, args, funcs) => {
     var incorrect = `Please use the correct format: \`!slots [bet]\`\n\`Ex: !slots 100\``
 
     if(!shacks[message.author.id]) return message.channel.send(`You do not own a shack! Use \`!found\` to found your shop!`)
-    if(!args[1]) return message.channel.send(incorrect);
-    if(funcs.bet_check(args[1]) === false) return message.channel.send(incorrect)
-    if(parseInt(args[1]) > 2000) return message.channel.send("Maximum bet is **$2,000**!")
-    if(parseInt(args[1]) < 10) return message.channel.send("Minimum bet is **$10**!")
-    if(shacks[message.author.id].balance < parseInt(args[1])) return message.channel.send(`You don't have enough money!`)
+    if(!args[0]) return message.channel.send(incorrect);
+    if(funcs.bet_check(args[0]) === false) return message.channel.send(incorrect)
+    if(parseInt(args[0]) > 2000) return message.channel.send("Maximum bet is **$2,000**!")
+    if(parseInt(args[0]) < 10) return message.channel.send("Minimum bet is **$10**!")
+    if(shacks[message.author.id].balance < parseInt(args[0])) return message.channel.send(`You don't have enough money!`)
 
-    var msg = await message.channel.send(`🍒 Spinning slots for **$${args[1]}**... 🍒`)
+    var msg = await message.channel.send(`🍒 Spinning slots for **$${args[0]}**... 🍒`)
 
     setTimeout(function () {  
     msg.delete()
@@ -42,7 +42,7 @@ module.exports.run = async (bot, message, args, funcs) => {
 
     if(slot6 === slot7 && slot7 === slot8 && slot8 === slot9 && slot9 === slot10) {
 
-        var reward = parseInt(args[1]) * 5
+        var reward = parseInt(args[0]) * 5
         shacks[message.author.id].balance = shacks[message.author.id].balance + reward
 
         fs.writeFile("././data/shacks.json", JSON.stringify(shacks, null, 4), (err) => {
@@ -50,7 +50,7 @@ module.exports.run = async (bot, message, args, funcs) => {
         })
 
 
-    var slotseee = new Discord.RichEmbed()
+    var slotseee = new Discord.MessageEmbed()
     .setColor('0xffea07')
     .setAuthor("---- Slots ----")
     .setDescription(`
@@ -65,7 +65,7 @@ module.exports.run = async (bot, message, args, funcs) => {
 
     if((slot6 === slot7 && slot7 === slot8 && slot8 === slot9) || (slot7 === slot8 && slot8 === slot9 && slot9 === slot10)) {
 
-        var reward = parseInt(args[1]) * 2.5
+        var reward = parseInt(args[0]) * 2.5
         shacks[message.author.id].balance = shacks[message.author.id].balance + reward
 
         fs.writeFile("././data/shacks.json", JSON.stringify(shacks, null, 4), (err) => {
@@ -88,7 +88,7 @@ module.exports.run = async (bot, message, args, funcs) => {
 
     if((slot6 === slot7 && slot7 === slot8) || (slot7 === slot8 && slot8 === slot9) || (slot8 === slot9 && slot9 === slot10)) {
 
-        var reward = parseInt(args[1]) * 1.75
+        var reward = parseInt(args[0]) * 1.75
         shacks[message.author.id].balance = shacks[message.author.id].balance + reward
 
         fs.writeFile("././data/shacks.json", JSON.stringify(shacks, null, 4), (err) => {
@@ -96,7 +96,7 @@ module.exports.run = async (bot, message, args, funcs) => {
         })
 
 
-    var slotseee = new Discord.RichEmbed()
+    var slotseee = new Discord.MessageEmbed()
     .setColor('0xffea07')
     .setAuthor("---- Slots ----")
     .setDescription(`
@@ -110,7 +110,7 @@ module.exports.run = async (bot, message, args, funcs) => {
 
     if(slot6 === slot7 || slot7 === slot8 || slot8 === slot9 || slot9 === slot10) {
 
-        var reward = Math.round(parseInt(args[1]) * 1.2)
+        var reward = Math.round(parseInt(args[0]) * 1.2)
         shacks[message.author.id].balance = shacks[message.author.id].balance + reward
 
         fs.writeFile("././data/shacks.json", JSON.stringify(shacks, null, 4), (err) => {
@@ -118,7 +118,7 @@ module.exports.run = async (bot, message, args, funcs) => {
         })
 
 
-    var slotseee = new Discord.RichEmbed()
+    var slotseee = new Discord.MessageEmbed()
     .setColor('0xffea07')
     .setAuthor("---- Slots ----")
     .setDescription(`
@@ -133,7 +133,7 @@ return message.channel.send({embed: slotseee});
 
     else {
 
-    var reward = parseInt(args[1])
+    var reward = parseInt(args[0])
     shacks[message.author.id].balance = shacks[message.author.id].balance - reward
 
     fs.writeFile("././data/shacks.json", JSON.stringify(shacks, null, 4), (err) => {
@@ -141,7 +141,7 @@ return message.channel.send({embed: slotseee});
     })
 
 
-    var slotseee = new Discord.RichEmbed()
+    var slotseee = new Discord.MessageEmbed()
     .setColor('0xffea07')
     .setAuthor("---- Slots ----")
     .setDescription(`

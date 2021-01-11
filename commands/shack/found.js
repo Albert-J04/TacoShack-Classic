@@ -43,7 +43,7 @@ module.exports.run = async (bot, message, args) => {
 
     message.reply("Your account was created! Check your DM for more info!");
 
-    bot.fetchUser(bot.user).then(myUser => {
+    bot.users.cache.get(bot.user).then(myUser => {
     avatar = myUser.avatarURL;
 
         message.author.createDM();

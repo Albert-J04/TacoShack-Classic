@@ -10,13 +10,10 @@ module.exports.run = async (bot, message, args) => {
 
     var time = ms(Date.now() - shacks[message.author.id].joined, {long: true});
 
-    bot.fetchUser(message.author.id).then(myUser => {
-        avatar = myUser.avatarURL;
-
-    var myshack = new Discord.RichEmbed()
+    var myshack = new Discord.MessageEmbed()
     .setTitle(`${shacks[message.author.id].name}`)
     .setColor('0xf9a422')
-    .setThumbnail(avatar)
+    .setThumbnail(message.author.displayAvatarURL({ format: "png", dynamic: true }))
     .addField(`Name`, `🔺 ${shacks[message.author.id].name}`)
     .addField(`Balance`, `💵 $${shacks[message.author.id].balance}`)
     .addField(`Income`, `💸 $${shacks[message.author.id].income}/hour`)
@@ -24,7 +21,7 @@ module.exports.run = async (bot, message, args) => {
     .addField(`Shack Age`, `⏳ ${time}`)
 
     return message.channel.send({embed:myshack})
-});
+
 }
 
 module.exports.help = {

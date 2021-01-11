@@ -14,13 +14,13 @@ module.exports.run = async (bot, message, args, funcs) => {
         return total;
     }
 
-if(args[1]) {
+if(args[0]) {
 
    // if(funcs.check_NaN(message.author.id) === false) return message.reply("Your balance and income was reset to **$100** for having a **NaN** balance/income!")
 
 
     if(!shacks[message.author.id]) return message.channel.send(`You do not own a shack! Use \`!found\` to found your shop!`)
-    var id = args[1].toString()
+    var id = args[0].toString()
     if(!upgrades[id]) return message.channel.send(`Please use a valid ID!`)
     if(id > 230 && id < 238) return message.channel.send(`That is an employee! Use \`!hire [ID]\` to hire!`)
 

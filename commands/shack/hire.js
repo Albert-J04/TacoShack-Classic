@@ -17,9 +17,9 @@ module.exports.run = async (bot, message, args) => {
         return total;
     }
 
-if(!args[1]) {
+if(!args[0]) {
 
-    var jobmarket = new Discord.RichEmbed()
+    var jobmarket = new Discord.MessageEmbed()
         .setTitle(`Employees`)
         .setColor('0x3477e2')
         .setThumbnail('https://cdn.dribbble.com/users/72556/screenshots/1711901/8bit-taco.jpg')
@@ -60,11 +60,10 @@ Use **!upgrades** to view more boosts!`)
 }
 
 
-
-if(args[1]) {
+if(args[0]) {
 
     if(!shacks[message.author.id]) return message.channel.send(`You do not own a shack! Use \`!found\` to found your shop!`)
-    var id = args[1].toString()
+    var id = args[0].toString()
     if(!upgrades[id]) return message.channel.send(`Please use a valid ID!`)
     if(id > 120 && id < 127) return message.channel.send(`That is an upgrade! Use \`!buy [ID]\` to purchase!`)
 
