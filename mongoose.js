@@ -2,7 +2,6 @@ const mongoose = require('mongoose')
 const settings = require('./util/settings.json')
 module.exports = {
     init: () => {
-        console.log(settings.mongoPass)
         const dbOptions = {
             useNewUrlParser: true,
             useUnifiedTopology: true,

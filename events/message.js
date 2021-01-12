@@ -12,33 +12,11 @@ module.exports = async (bot, message) => {
 
         if (!command) return;
         
-        // Send Messages Permission
-		if (!message.channel.permissionsFor(message.guild.me.id).has('SEND_MESSAGES')) {
-			message.author.send(`I don't have SEND_MESSAGES permission in *${member.guild.name}* server. Please report this to the server moderators.`).catch(() => {});
-			return;
-        }
-		
-		if(command.permissions && !command.permissions.every(permission=>message.member.permissions.has(permission))){
-			message.channel.send('❗ | You do not have the required permissions to use this command!')
-			 return;
-		}
-
-        // Check if command require args
-		if (command.args && !args.length) {
-			const data = [];
-			data.push(`❗ | You didn't provide any arguments!`);
-			if (command.usage) data.push(`To use this command use: \`${botSettings.prefix}${command.name} ${command.usage}\``);
-			message.channel.send(data)
-			return;
-			
-        }
-        
         // Developer commands
-		if (command.dev) {
+		if (command.help.dev) {
 			if (message.author.id != botSettings.ownerID) return message.channel.send('❗ | Only the Bot Owner can run this command!')
-        }
-        
-        let data;
+		}
+		
 		try {
 			command.run(bot, message, args, funcs);
 		}
