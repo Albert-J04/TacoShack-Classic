@@ -88,7 +88,7 @@ if(args[0]) {
 
             var cost = costCalc(upgrades[id].price, data.employees[id])
 
-            if(data.balance < upgrades[id].price) return message.channel.send(`You don't have enough money!`)
+            if(data.balance < cost) return message.channel.send(`You don't have enough money!`)
             if(data.employees[id] >= upgrades[id].max) return message.channel.send(`You already have hired the maximum amount!`)
 
             data.balance -= cost
@@ -100,8 +100,6 @@ if(args[0]) {
         }
     })
 }
-
-
 }
 
 module.exports.help = {

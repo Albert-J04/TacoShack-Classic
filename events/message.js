@@ -20,13 +20,13 @@ module.exports = async (bot, message) => {
 		
 		if(cooldown.has(message.author.id)) {
 			message.channel.send("❌ Please slow down!")
+			return
+		} else{
+			cooldown.add(message.author.id)
 			setTimeout(() => {
 				cooldown.delete(message.author.id)
-			}, 1000)
-			return
-		}
-
-		cooldown.add(message.author.id);
+			}, 1500);
+		}		
 
 		try {
 			command.run(bot, message, args, funcs);
