@@ -5,7 +5,7 @@ const prefix = settings.prefix;
 const fs = require("fs");
 
 module.exports.run = async (bot, message, args) => {
-    var help = new Discord.RichEmbed()
+    var help = new Discord.MessageEmbed()
     .setTitle(`All Commands`)
     .setColor('0xf9a422')
     .setThumbnail('https://cdn.dribbble.com/users/72556/screenshots/1711901/8bit-taco.jpg')

@@ -1,27 +1,36 @@
 const Discord = require('discord.js');
 const settings = require('../../util/settings.json');
-const shacks = require("../../data/shacks.json");
+const shacks = require("../../schemas/shacks.js");
 const prefix = settings.prefix;
 const fs = require("fs");
 const ms = require("ms");
 
 module.exports.run = async (bot, message, args) => {
-    if(!shacks[message.author.id]) return message.channel.send(`You do not own a shack! Use \`!found\` to found your taco shack!`)
 
-    var time = ms(Date.now() - shacks[message.author.id].joined, {long: true});
+    shacks.findOne({userID: message.author.id}, (err, data) => {
+        if (err){
+            message.channel.send('An error occured.')
+            return;
+        } else if (!data) {
+            message.channel.send(`You do not own a shack! Use \`!found\` to found your taco shack!`)
+            return
+        } else if (data) {
+            var time = ms(Date.now() - data.joined, {long: true});
 
-    var myshack = new Discord.MessageEmbed()
-    .setTitle(`${shacks[message.author.id].name}`)
-    .setColor('0xf9a422')
-    .setThumbnail(message.author.displayAvatarURL({ format: "png", dynamic: true }))
-    .addField(`Name`, `🔺 ${shacks[message.author.id].name}`)
-    .addField(`Balance`, `💵 $${shacks[message.author.id].balance}`)
-    .addField(`Income`, `💸 $${shacks[message.author.id].income}/hour`)
-    .addField(`Total Tacos`, `🌮 ${shacks[message.author.id].tacos}`)
-    .addField(`Shack Age`, `⏳ ${time}`)
-
-    return message.channel.send({embed:myshack})
-
+            var myshack = new Discord.MessageEmbed()
+            .setTitle(`${data.name}`)
+            .setColor('0xf9a422')
+            .setThumbnail(message.author.displayAvatarURL())
+            .addField(`Name`, `🔺 ${data.name}`)
+            .addField(`Balance`, `💵 $${data.balance}`)
+            .addField(`Income`, `💸 $${data.income}/hour`)
+            .addField(`Total Tacos`, `🌮 ${data.tacos}`)
+            .addField(`Shack Age`, `⏳ ${time}`)
+        
+            return message.channel.send({embed:myshack})
+        
+        }
+    })
 }
 
 module.exports.help = {

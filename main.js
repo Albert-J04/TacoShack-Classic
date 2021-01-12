@@ -1,11 +1,11 @@
 const Discord = require('discord.js')
+const mongoose = require('./mongoose.js')
 const bot = new Discord.Client();
 const settings = require('./util/settings.json');
-const shacks = require('./data/shacks.json');
+const shacks = require("./schemas/shacks.js");
 const requireAll = require('require-all');
 const path = require('path');
 const fs = require('fs');
-const funcs = require('./util/functions.js')
 
 //ready
 bot.on('ready', () => {
@@ -14,15 +14,18 @@ bot.on('ready', () => {
 
     // HOURLY INCOME
     setInterval (function () {
-        for(var key in shacks) {
-            var tacorando = Math.floor(Math.random() * (20 - 5) ) + 5;
-            var tacos = Math.floor((Math.round(shacks[key].income / 4)) + tacorando);
-            shacks[key].balance = shacks[key].balance + shacks[key].income;
-            shacks[key].tacos = shacks[key].tacos + tacos;
-            fs.writeFile("././data/shacks.json", JSON.stringify(shacks, null, 4), (err) => {
-                if(err) console.log(err);
-            })
-        }
+		shacks.find()
+		.then(async (results) => {
+			results.forEach(result => {
+				shacks.findOne({userID: results.userID}, async (err, data) => {
+					if (err || !data) return console.log('weird')
+					var tacorando = Math.floor(Math.random() * (20 - 5) ) + 5;
+					var tacos = Math.floor((Math.round(shacks[key].income / 4)) + tacorando);
+					data.balance = data.balance + data.income;
+					data.tacos = data.tacos + tacos;
+				})
+			})
+		})
         return bot.channels.cache.get('787401447217954816').send(`Hourly Income Sent!`);
 
     }, 3600000);//3600000
@@ -65,3 +68,4 @@ getCommands('./commands/');
 
 
 bot.login(settings.token);
+mongoose.init()
