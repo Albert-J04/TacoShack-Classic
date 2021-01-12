@@ -11,7 +11,7 @@ const cron = require('cron')
 
 bot.logWebhook = new Discord.WebhookClient('VALUE', 'VALUE')
 
-let hourlyIncomeJob = new cron.CronJob('* * * * *', () => {
+let hourlyIncomeJob = new cron.CronJob('0 * * * *', () => {
 	hourlyIncome.send(bot)
 })
 
