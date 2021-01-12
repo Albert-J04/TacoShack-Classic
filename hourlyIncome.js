@@ -9,7 +9,13 @@ module.exports = {
             results.forEach((result, i = 0) => {
                 i++;
                 shacks.findOne({userID: result.userID}, async (err, data) => {
-                    if (err || !data) return console.log('weird')
+                    if (err) {
+                        console.log(err)
+                        return bot.logWebhook.send(`⚠ An error occured, check logs!`);
+                    }
+                    if (!data) {
+                        return bot.logWebhook.send(`⚠ Lack of data!`);
+                    }
                     const oldBalance = data.balance
                     const oldTacos = data.tacos
                     var tacorando = Math.floor(Math.random() * (20 - 5) ) + 5;
