@@ -14,7 +14,7 @@ module.exports = async (bot, message) => {
         
         // Developer commands
 		if (command.help.dev) {
-			if (message.author.id != botSettings.ownerID) return message.channel.send('❗ | Only the Bot Owner can run this command!')
+			if (!settings.devs.includes(message.author.id)) return
 		}
 		
 		try {
