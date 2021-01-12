@@ -4,7 +4,6 @@ const shacks = require("../../schemas/shacks.js");
 const prefix = settings.prefix;
 const fs = require("fs");
 const ms = require("ms");
-
 module.exports.run = async (bot, message, args) => {
 
     shacks.findOne({userID: message.author.id}, (err, data) => {

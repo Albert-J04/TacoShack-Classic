@@ -16,8 +16,8 @@ module.exports.run = async (bot, message, args) => {
             return;
         }
         else if (data) {
-            var arlen = args[0].length + 2;
-            var params = message.content.slice(arlen);
+            //var arlen = args[0].length + 2;
+            var params = args.join(' ')
         
             if(!args[0]) return message.reply(`Please use the correct format! \`!name [new name]\``);
             if(params.length < 3) return message.reply(`Please use more than \`3\` characters!`);
