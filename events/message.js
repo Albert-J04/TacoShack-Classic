@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const settings = require(`../util/settings.json`)
 const funcs = require('../util/functions.js')
+const cooldown = new Set();
 module.exports = async (bot, message) => {
 
         if(!message.guild || !message.content.startsWith(settings.prefix) || message.author.bot) return;
@@ -17,6 +18,16 @@ module.exports = async (bot, message) => {
 			if (!settings.devs.includes(message.author.id)) return
 		}
 		
+		if(cooldown.has(message.author.id)) {
+			message.channel.send("❌ Please slow down!")
+			setTimeout(() => {
+				cooldown.delete(message.author.id)
+			}, 1000)
+			return
+		}
+
+		cooldown.add(message.author.id);
+
 		try {
 			command.run(bot, message, args, funcs);
 		}
