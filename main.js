@@ -24,6 +24,7 @@ let hourlyIncome = new cron.CronJob('0 * * * *', () => {
 				var tacos = Math.floor((Math.round(data.income / 4)) + tacorando);
 				data.balance = data.balance + data.income;
 				data.tacos = data.tacos + tacos;
+				data.save().catch(err => console.log(err))
 				if (count === results.length){
 					var d = new Date().toLocaleTimeString();
 					return bot.logWebhook.send(`[\`${d}\`] Hourly Income Done!`);
