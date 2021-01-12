@@ -24,6 +24,7 @@ bot.on('ready', () => {
 
 bot.on("error", (e) => console.error("Error " + e));
 bot.on("warn", (e) => console.warn("Warn " + e));
+//bot.on("debug", (d) => console.warn("Debug " + d));
 
 const events = requireAll({
 	dirname: __dirname + '/events',

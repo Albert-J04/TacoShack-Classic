@@ -59,5 +59,5 @@ module.exports.run = async (bot, message, args, funcs) => {
 
 module.exports.help = {
     name: "flip",
-    aliases: ["coin", "f"]
+    aliases: ["coin"]
 }

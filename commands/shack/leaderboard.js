@@ -26,8 +26,6 @@ module.exports.run = async (bot, message, args) => {
     });
     
     var string = stringarray.join("\n\n");
-
-
             
     var leader = new Discord.MessageEmbed()
     .setColor('#f400f0')
@@ -35,8 +33,6 @@ module.exports.run = async (bot, message, args) => {
     .setDescription(`\n${string}`)
 
     message.channel.send({embed: leader});
-  
-      
     })
 }
 
