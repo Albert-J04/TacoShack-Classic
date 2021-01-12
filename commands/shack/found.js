@@ -63,7 +63,8 @@ module.exports.run = async (bot, message, args) => {
         🔸 Either top the **Most Tacos Sold** or the **Richest** leaderboard for bragging rights.
         
         **Contact @Cole#7575 if you need any further help!**`)
-                message.author.send({embed: helpdm});
+                message.author.send({embed: helpdm})
+                .catch(error => {});
             
         
     })
