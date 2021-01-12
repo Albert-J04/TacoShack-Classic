@@ -7,7 +7,6 @@ module.exports = {
         shacks.find()
         .then(async (results) => {
             results.forEach((result, i = 0) => {
-                i++;
                 shacks.findOne({userID: result.userID}, async (err, data) => {
                     if (err) {
                         console.log(err)
@@ -24,6 +23,7 @@ module.exports = {
                     data.tacos = data.tacos + tacos;
                     data.save().catch(err => console.log(err))
                     bot.logWebhook.send(`** **\n**${data.name}** (\`${data.userID}\`)\n**Previous:** Bal: \`${oldBalance}\` | Tacos: \`${oldTacos}\`\n**+After:** Bal: \`${data.balance}\` | Tacos: \`${data.tacos}\``);
+                    i++;
                     if (i === results.length){
                         var d = new Date().toLocaleTimeString();
                         return bot.logWebhook.send(`✅ [\`${d}\`] Hourly Income Done!`);
