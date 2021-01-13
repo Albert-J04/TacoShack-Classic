@@ -17,7 +17,7 @@ let hourlyIncomeJob = new cron.CronJob('0 * * * *', () => {
 
 //ready
 bot.on('ready', () => {
-    console.log("Taco Shack Ready to Sell Some Tacos!")
+    console.log(`Logged in as ${bot.user.tag} | Taco Shack Ready to Sell Some Tacos!`)
 	bot.user.setActivity(`with v1.0`)
 	hourlyIncomeJob.start()
 });
