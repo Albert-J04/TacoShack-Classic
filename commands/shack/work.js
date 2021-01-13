@@ -16,30 +16,22 @@ module.exports.run = async (bot, message, args) => {
             message.channel.send(`You do not own a shack! Use \`!found\` to found your shop!`)
             return
         } else if (data) {
-            const redisClient = await redis()
-            const redisKey = `work-${message.author.id}`
-
-            redisClient.get(redisKey, function(err, reply) {
-                if (reply) {
-                    message.channel.send("Chill... Don't overwork yourself!")
-                  redisClient.quit()
-                  return;
-                }
-      
-                try{
-                    redisClient.set(redisKey, 'TRUE', 'EX', cdseconds)
-                    var tacos = Math.floor(Math.random() * (30 - 5) ) + 5;
-                    var money = Math.floor(Math.random() * (100 - 20) ) + 20;
-                    data.balance += money
-                    data.tacos += tacos
-                    data.save().catch(err => console.log(err))
+           
+            if (data.work > Date.now() && data.work){
+                message.channel.send(`Chill... Don't overwork yourself!`)
+                return;
+            }
+                var tacos = Math.floor(Math.random() * (30 - 5) ) + 5;
+                var money = Math.floor(Math.random() * (100 - 20) ) + 20;
+                data.work = Date.now() + 600000
+                data.balance += money
+                data.tacos += tacos
+                data.save().catch(err => console.log(err))
             
-                    return message.channel.send(`💵 You cooked **${tacos}** tacos and earned **$${money}** while working!`)
+                return message.channel.send(`💵 You cooked **${tacos}** tacos and earned **$${money}** while working!`)
 
-                }finally {
-                 redisClient.quit()
-                }
-              })
+               
+              
         }
     })
 }

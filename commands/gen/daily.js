@@ -25,8 +25,6 @@ module.exports.run = async (bot, message, args) => {
             data.save().catch(err => console.log(err))
             return message.channel.send(`💰 You have claimed your daily reward of **$250**!`);
         }
-        
-
     })
 }
 

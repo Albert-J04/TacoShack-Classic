@@ -16,30 +16,21 @@ module.exports.run = async (bot, message, args) => {
             message.channel.send(`You do not own a shack! Use \`!found\` to found your shop!`)
             return
         } else if (data) {
-
-            const redisClient = await redis()
-            const redisKey = `tips-${message.author.id}`
-
-            redisClient.get(redisKey, function(err, reply) {
-                if (reply) {
-                    message.channel.send("Chill... Money doesn't grow on trees!")
-                  redisClient.quit()
-                  return;
-                }
-      
-                try{
-                  redisClient.set(redisKey, 'TRUE', 'EX', cdseconds)
+            
+                
+            if (data.tips > Date.now() && data.tips){
+                message.channel.send(`Chill... Money doesn't grow on trees!`)
+                return;
+            }
+                  
                   var tip = Math.floor(Math.random() * (50 - 10) ) + 10;
+                  data.tips = Date.now() + 300000
                   data.balance += tip
                   data.save().catch(err => console.log(err))
           
                   return message.channel.send(`💵 You collected **$${tip}** in tips!`)
-                } finally {
-                 redisClient.quit()
-                }
-              })
-            
-
+              
+              
         }
     })
 }

@@ -8,8 +8,8 @@ const shackSchema = mongoose.Schema({
     balance: Number,
     income: Number,
     tacos: Number,
+    work: Number,
     tips: Number,
-    tip_boost: Number,
     daily: Number,
     upgrades: {
         "121": Number,

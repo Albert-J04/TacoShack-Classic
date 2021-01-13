@@ -24,8 +24,8 @@ module.exports.run = async (bot, message, args) => {
                 balance: 1000,
                 income: 100,
                 tacos: 0,
+                work: 0,
                 tips: 0,
-                tip_boost: 1,
                 daily: 0,
                 upgrades: {
                     121: 0,
