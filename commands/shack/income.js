@@ -30,7 +30,7 @@ module.exports.run = async (bot, message, args) => {
         }
         var string = stringarray.join("\n\n");
         leader.setDescription(`\n${string}`)
-        await message.channel.send(`This command was not part of v1.0!`, {embed: leader});
+        await message.channel.send(`This command was not part of v1.0\nThis would not be a command for another **638** days!`, {embed: leader});
     })
 
 }
