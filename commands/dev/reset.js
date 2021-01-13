@@ -7,15 +7,11 @@ const path = require('path');
 module.exports.run = async (bot, message, args) => {
 
     if (!message.member.permissions.has("BAN_MEMBERS")) return;
-
-    if (args[0].toLowerCase() != 'name') return;
+    var incorrect = "Please use the correct format: `!reset [name] [User ID]`\nEx: `!reset name 255422791875166208`"
+    if (args[0]) return message.channel.send(incorrect)
+    if (args[0].toLowerCase() != 'name') return message.channel.send(incorrect)
 
     const userid = args[1].replace(/[<@!>]/g, '')
-    const params = args.splice(2).join(' ')
-
-    if(params.length < 3) return message.reply(`Please use more than \`3\` characters!`);
-    if(params.length > 30) return message.reply(`Please use less than \`30\` characters!`);
-    if(!isNaN(params)) return message.reply(`Please use letters!`);
 
     shacks.findOne({userID: userid}, (err, data) => {
         if (err) {
@@ -26,7 +22,7 @@ module.exports.run = async (bot, message, args) => {
             message.channel.send(`Shack not found!`)
             return;
         } else if (data){
-            data.name = params
+            data.name = "Taco Shack"
             data.save().catch(err => console.log(err))
             return message.channel.send(`✅ Changed (\`${data.userID}\`) name to: **${data.name}**`)
         }
