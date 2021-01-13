@@ -48,7 +48,7 @@ function getCommands(dir, callback) {
 				else if (stats.isFile() && file.endsWith('.js')) {
 					const command = require(`./${filepath}`);
 					bot.commands.set(command.help.name, command);
-					console.log(command.help.name)
+					console.log(`${command.help.name}.js loaded!`)
 				}
 			});
 		});
