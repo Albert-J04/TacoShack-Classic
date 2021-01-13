@@ -3,8 +3,6 @@ const settings = require('../../util/settings.json');
 const shacks = require("../../schemas/shacks.js");
 const prefix = settings.prefix;
 const fs = require("fs");
-const redis = require('../../redis')
-let cdseconds = 300;
 
 module.exports.run = async (bot, message, args) => {
 
