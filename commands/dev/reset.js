@@ -8,8 +8,7 @@ module.exports.run = async (bot, message, args) => {
 
     if (!message.member.permissions.has("BAN_MEMBERS")) return;
     var incorrect = "Please use the correct format: `!reset [name] [User ID]`\nEx: `!reset name 255422791875166208`"
-    if (args[0]) return message.channel.send(incorrect)
-    if (args[0].toLowerCase() != 'name') return message.channel.send(incorrect)
+    if (!args[0] || args[0].toLowerCase() != 'name') return message.channel.send(incorrect)
 
     const userid = args[1].replace(/[<@!>]/g, '')
 
