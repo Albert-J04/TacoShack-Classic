@@ -34,6 +34,7 @@ module.exports.run = async (bot, message, args) => {
         let index = res.indexOf(obj);
         
         leader.setDescription(`\n${string} ${(index <= 10) ? "" : `\n━━━━━━━━━━━━━━\n**${index}.** **You** - ${obj.tacos.toString()} Tacos`}`)
+        leader.setFooter('The leaderboard in v1.0 would not show your place')
         await message.channel.send({embed: leader});
     })
 

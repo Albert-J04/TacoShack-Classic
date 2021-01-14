@@ -29,7 +29,12 @@ module.exports.run = async (bot, message, args) => {
             }
         }
         var string = stringarray.join("\n\n");
-        leader.setDescription(`\n${string}`)
+
+        let obj = res.find(u => u.userID === message.author.id);
+        let index = res.indexOf(obj);
+
+        leader.setDescription(`\n${string} ${(index <= 10) ? "" : `\n━━━━━━━━━━━━━━\n**${index}.** **You** - ${obj.income.toString()}/hour`}`)
+        leader.setFooter('The leaderboard in v1.0 would not show your place')
         await message.channel.send(`This command was not part of v1.0\nThis would not be a command for another **638** days!`, {embed: leader});
     })
 

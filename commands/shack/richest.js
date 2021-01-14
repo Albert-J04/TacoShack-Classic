@@ -29,7 +29,12 @@ module.exports.run = async (bot, message, args) => {
             }
         }
         var string = stringarray.join("\n\n");
-        leader.setDescription(`\n${string}`)
+
+        let obj = res.find(u => u.userID === message.author.id);
+        let index = res.indexOf(obj);
+
+        leader.setDescription(`\n${string} ${(index <= 10) ? "" : `\n━━━━━━━━━━━━━━\n**${index}.** **You** - ${obj.balance.toString()}`}`)
+        leader.setFooter('The leaderboard in v1.0 would not show your place')
         await message.channel.send({embed: leader});
     })
 
