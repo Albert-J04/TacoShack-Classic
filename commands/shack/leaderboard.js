@@ -29,13 +29,11 @@ module.exports.run = async (bot, message, args) => {
             }
         }
         var string = stringarray.join("\n\n");
-        /*
-            // Potential Code to show their place
 
         let obj = res.find(u => u.userID === message.author.id);
         let index = res.indexOf(obj);
-        */ 
-        leader.setDescription(`\n${string}`) // ${(index <= 10) ? "" : `\n━━━━━━━━━━━━━━\n**${index}.** **You** - ${obj.tacos.toString()} Tacos`}`)
+        
+        leader.setDescription(`\n${string} ${(index <= 10) ? "" : `\n━━━━━━━━━━━━━━\n**${index}.** **You** - ${obj.tacos.toString()} Tacos`}`)
         await message.channel.send({embed: leader});
     })
 

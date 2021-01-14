@@ -9,7 +9,7 @@ const path = require('path');
 const fs = require('fs');
 const cron = require('cron')
 
-bot.logWebhook = new Discord.WebhookClient('787445180034449418', 'oBo0vQ8piesRwfWpLBz8dCCMT122rwtLXVWiqjVN6r9pHIcBvmAU2RXcfgW1AwAoVBGG')
+bot.logWebhook = new Discord.WebhookClient(logWebhook[0], logWebhook[1])
 
 let hourlyIncomeJob = new cron.CronJob('0 * * * *', () => {
 	hourlyIncome.send(bot)
