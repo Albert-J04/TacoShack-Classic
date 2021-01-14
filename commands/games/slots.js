@@ -6,13 +6,13 @@ const fs = require("fs");
 
 module.exports.run = async (bot, message, args, funcs) => {
 
-    var incorrect = `Please use the correct format: \`!slots [bet]\`\n\`Ex: !slots 100\``
+    var incorrect = `Please use the correct format: \`${settings.prefix}slots [bet]\`\n\`Ex: ${settings.prefix}slots 100\``
     shacks.findOne({userID: message.author.id}, async (err, data) => {
         if (err){
             message.channel.send('An error occured.')
             return;
         } else if (!data) {
-            message.channel.send(`You do not own a shack! Use \`!found\` to found your shop!`)
+            message.channel.send(`You do not own a shack! Use \`${settings.prefix}found\` to found your shop!`)
             return
         } else if (data) {
             if(!args[0]) return message.channel.send(incorrect);

@@ -78,13 +78,13 @@ if(args[0]) {
             message.channel.send('An error occured.')
             return;
         } else if (!data) {
-            message.channel.send(`You do not own a shack! Use \`!found\` to found your shop!`)
+            message.channel.send(`You do not own a shack! Use \`${settings.prefix}found\` to found your shop!`)
             return;
         } else if (data){
             
             var id = args[0].toString()
             if(!upgrades[id]) return message.channel.send(`Please use a valid ID!`)
-            if(id > 120 && id < 127) return message.channel.send(`That is an upgrade! Use \`!buy [ID]\` to purchase!`)
+            if(id > 120 && id < 127) return message.channel.send(`That is an upgrade! Use \`${settings.prefix}buy [ID]\` to purchase!`)
 
             var cost = costCalc(upgrades[id].price, data.employees[id])
 

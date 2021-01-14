@@ -15,13 +15,12 @@ module.exports.run = async (bot, message, args) => {
     let ramUsage = (process.memoryUsage().heapTotal / 1024 / 1024).toFixed(2);
     let ramTotal = (os.totalmem() / 1024 / 1024).toFixed(2);
     let percentage = ((ramUsage / ramTotal) * 100).toFixed(2) + '%';
-    let creator = bot.users.cache.get(settings.devs[0]);
     //Create an embed for the information
     let statsEmbed = new Discord.MessageEmbed()
     .setColor('4A90E2')
     .setAuthor(`${bot.user.username} stats`, bot.user.displayAvatarURL())
     .addField('📈 Bot', `${bot.guilds.cache.size} Servers\n${bot.users.cache.size} Members\n`)
-    .addField('👤 Creator', `Original: Cole#7575\nUpdated by: ${creator.tag}`)
+    .addField('👤 Creator', `Original: Cole#7575\nUpdated by: Albert#0002`)
     .addField('⬆ Uptime', `${uptime}`)
     .addField(`💻 Hosting Information`, `Ram: ${ramUsage}MB / ${ramTotal}MB (${percentage})\nKernel: ${os.type()} ${os.release()}`)
     .addField(`🚚 API Latency`, `${bot.ws.ping}ms`)

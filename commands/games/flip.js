@@ -5,14 +5,14 @@ const prefix = settings.prefix;
 const fs = require("fs");
 
 module.exports.run = async (bot, message, args, funcs) => {
-    var incorrect = `Please use the correct format: \`!flip [heads/tails] [bet]\`\n\`Ex: !flip heads 100\``
+    var incorrect = `Please use the correct format: \`${settings.prefix}flip [heads/tails] [bet]\`\n\`Ex: ${settings.prefix}flip heads 100\``
     
     shacks.findOne({userID: message.author.id}, (err, data) => {
         if (err){
             message.channel.send('An error occured.')
             return;
         } else if (!data) {
-            message.channel.send(`You do not own a shack! Use \`!found\` to found your shop!`)
+            message.channel.send(`You do not own a shack! Use \`${settings.prefix}found\` to found your shop!`)
             return
         } else if (data) {
             if(!args[0] || !args[1]) return message.channel.send(incorrect);

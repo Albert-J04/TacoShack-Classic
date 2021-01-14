@@ -22,12 +22,12 @@ if(args[0]) {
             message.channel.send('An error occured.')
             return;
         } else if (!data) {
-            message.channel.send(`You do not own a shack! Use \`!found\` to found your shop!`)
+            message.channel.send(`You do not own a shack! Use \`${settings.prefix}found\` to found your shop!`)
             return;
         } else if (data){
             var id = args[0].toString()
             if(!upgrades[id]) return message.channel.send(`Please use a valid ID!`)
-            if(id > 230 && id < 238) return message.channel.send(`That is an employee! Use \`!hire [ID]\` to hire!`)
+            if(id > 230 && id < 238) return message.channel.send(`That is an employee! Use \`${settings.prefix}hire [ID]\` to hire!`)
             var cost = costCalc(upgrades[id].price, data.upgrades[id])
             if(data.balance < cost) return message.channel.send(`You don't have enough money!`)
             if(data.upgrades[id] >= upgrades[id].max) return message.channel.send(`You already have purchased the maximum amount!`)

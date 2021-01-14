@@ -17,7 +17,7 @@ module.exports.run = async (bot, message, args, funcs) => {
             message.channel.send('An error occured.')
             return;
         } else if (!data) {
-            message.channel.send(`You do not own a shack! Use \`!found\` to found your taco shack!`)
+            message.channel.send(`You do not own a shack! Use \`${settings.prefix}found\` to found your taco shack!`)
             return
         } else if (data) {
             var time = ms(Date.now() - data.joined, {long: true});

@@ -11,7 +11,7 @@ module.exports.run = async (bot, message, args) => {
             message.channel.send('An error occured.')
             return;
         } else if (!data) {
-            message.channel.send(`You do not own a shack! Use \`!found\` to found your shop!`)
+            message.channel.send(`You do not own a shack! Use \`${settings.prefix}found\` to found your shop!`)
             return
         } else if (data) {
            
