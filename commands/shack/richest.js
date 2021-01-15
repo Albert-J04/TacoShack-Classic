@@ -34,7 +34,9 @@ module.exports.run = async (bot, message, args) => {
         let index = res.indexOf(obj);
 
         leader.setDescription(`\n${string} ${(index < 10) ? "" : `\n━━━━━━━━━━━━━━\n**${index + 1}.** **You** - ${obj.balance.toString()}`}`)
-        leader.setFooter('The leaderboard in v1.0 would not show your place')
+        if (index > 10){
+            leader.setFooter('The leaderboard in v1.0 would not show your place')
+        }
         await message.channel.send({embed: leader});
     })
 
