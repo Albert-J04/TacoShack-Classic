@@ -6,12 +6,12 @@ module.exports = async (bot, message) => {
 
         if(!message.guild || !message.content.startsWith(settings.prefix) || message.author.bot) return;
         
-        const args = message.content.slice(settings.prefix.length).split(/ +/);
+        const args = message.content.substring(settings.prefix.length).trim().split(/ +/g);
         const commandName = args.shift().toLowerCase();
 		const command = bot.commands.get(commandName)
 			|| bot.commands.find(cmd => cmd.help.aliases && cmd.help.aliases.includes(commandName));
 
-        if (!command) return;
+        if (!command) return message.reply("Please enter a valid command!")
         
         // Developer commands
 		if (command.help.dev) {
