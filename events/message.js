@@ -23,9 +23,7 @@ module.exports = async (bot, message) => {
 			return
 		} else{
 			cooldown.add(message.author.id)
-			setTimeout(() => {
-				cooldown.delete(message.author.id)
-			}, 700);
+			setTimeout(() => {cooldown.delete(message.author.id)}, 700);
 		}		
 
 		try {
