@@ -19,7 +19,7 @@ module.exports = async (bot, message) => {
 		}
 		
 		if(cooldown.has(message.author.id)) {
-			message.channel.send({embed: {color: "dc0000", description: "❌ Please slow down!", footer: {"text": "Command cooldowns was not part of v1.0!"}}})
+			message.channel.send({embed: {color: "dc0000", description: "❌ Please slow down!", footer: {"text": "Command cooldowns were not part of v1.0!"}}})
 			return
 		} else{
 			cooldown.add(message.author.id)
