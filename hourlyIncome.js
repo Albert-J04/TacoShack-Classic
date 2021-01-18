@@ -29,7 +29,7 @@ module.exports = {
                     if (i === results.length){
                         setTimeout(function() {
                             var string = out.join('\n━━━━━━━━━━━━━━\n')
-                            var parts = string.split(/(.{2000})/).filter(O=>O)
+                            var parts = string.split(/(.{1500})/).filter(O=>O)
                             embeds = []
                             parts.forEach(async part => {
                                 const embed = new Discord.MessageEmbed()
