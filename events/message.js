@@ -11,6 +11,11 @@ module.exports = async (bot, message) => {
 		const command = bot.commands.get(commandName)
 			|| bot.commands.find(cmd => cmd.help.aliases && cmd.help.aliases.includes(commandName));
 
+
+		if (!message.channel.permissionsFor(message.guild.me.id).has('SEND_MESSAGES')) {
+			return;
+		}
+	
         if (!command) return message.reply("Please enter a valid command!")
         
         // Developer commands
