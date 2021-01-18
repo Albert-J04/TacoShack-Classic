@@ -5,10 +5,10 @@ module.exports = {
     send: (bot) => {
         out = []
         var d = new Date().toLocaleTimeString();
-        bot.logWebhook.send(`⏱ [\`${d}\`] Hourly Income Starting!`);
         shacks.find()
         .then(async (results) => {
-            results.forEach((result, i = 0) => {
+            bot.logWebhook.send(`⏱ [\`${d}\`] Hourly Income Starting! (${results.length} Shacks)`);
+            results.forEach(async (result, i = 0) => {
                 shacks.findOne({userID: result.userID}, async (err, data) => {
                     if (err) {
                         console.log(err)
@@ -24,28 +24,32 @@ module.exports = {
                     data.balance = data.balance + data.income;
                     data.tacos = data.tacos + tacos;
                     data.save().catch(err => console.log(err))
-                    out.push(`**${data.name}** (\`${data.userID}\`)\n**Before:** Bal: \`${oldBalance}\` | Tacos: \`${oldTacos}\`\n**+After:** Bal: \`${data.balance}\` | Tacos: \`${data.tacos}\`\nHourly: \`${data.income}\``);
+                    out.push(`\`${i + 1}\` **${data.name}** (\`${data.userID}\`)\n**Before:** Bal: \`${oldBalance}\` | Tacos: \`${oldTacos}\`\n**+After:** Bal: \`${data.balance}\` | Tacos: \`${data.tacos}\`\nHourly: \`${data.income}\``);
                     i++;
                     if (i === results.length){
-                        var string = out.join('\n━━━━━━━━━━━━━━\n')
-                        var parts = string.split(/(.{2048})/).filter(O=>O)
-                        embeds = []
-                        parts.forEach(async part => {
-                            const embed = new Discord.MessageEmbed()
-                                .setDescription(part)
-                                .setColor(`BLURPLE`)
-                            embeds.push(embed)
-                        })
-                        const split = chunkArray(embeds, 10)
-                        split.forEach(chunk => {
-                            bot.logWebhook.send({embeds: chunk})
-                        })
-                        var d = new Date().toLocaleTimeString();
-                        return bot.logWebhook.send(`✅ [\`${d}\`] Hourly Income Done!`);
+                        setTimeout(function() {
+                            var string = out.join('\n━━━━━━━━━━━━━━\n')
+                            var parts = string.split(/(.{2048})/).filter(O=>O)
+                            embeds = []
+                            parts.forEach(async part => {
+                                const embed = new Discord.MessageEmbed()
+                                    .setDescription(part)
+                                    .setColor(`BLURPLE`)
+                                embeds.push(embed)
+                            })
+                            const split = chunkArray(embeds, 10)
+                            split.forEach(async chunk => {
+                                await bot.logWebhook.send({embeds: chunk})
+                            })
+                            var d = new Date().toLocaleTimeString();
+                            return bot.logWebhook.send(`✅ [\`${d}\`] Hourly Income Done!`);
+                        }, 500) // <-- timeout in MS
                     }
                 })
             })
         });
+
+      
     }
 }
 
