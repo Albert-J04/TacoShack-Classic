@@ -4,9 +4,10 @@ const Discord = require('discord.js');
 module.exports = {
     send: (bot) => {
         out = []
-        var d = new Date().toLocaleTimeString();
+       
         shacks.find()
         .then(async (results) => {
+            var d = new Date().toLocaleTimeString();
             bot.logWebhook.send(`⏱ [\`${d}\`] Hourly Income Starting! (${results.length} Shacks)`);
             results.forEach(async (result, i = 0) => {
                 shacks.findOne({userID: result.userID}, async (err, data) => {
@@ -24,7 +25,8 @@ module.exports = {
                     data.save().catch(err => console.log(err))
                     i++;
                     if (i === results.length){
-                        return bot.logWebhook.send(`✅ [\`${d}\`] Hourly Income Done!`);
+                        var d1 = new Date().toLocaleTimeString();
+                        return bot.logWebhook.send(`✅ [\`${d1}\`] Hourly Income Done!`);
                     }
                 })
             })
