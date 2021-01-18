@@ -24,7 +24,7 @@ module.exports = {
                     data.balance = data.balance + data.income;
                     data.tacos = data.tacos + tacos;
                     data.save().catch(err => console.log(err))
-                    out.push(`**${data.name}** (\`${data.userID}\`)\n**Before:** Bal: \`${oldBalance}\` | Tacos: \`${oldTacos}\`\n**+After:** Bal: \`${data.balance}\` | Tacos: \`${data.tacos}\`\nHourly: \${data.income}`);
+                    out.push(`**${data.name}** (\`${data.userID}\`)\n**Before:** Bal: \`${oldBalance}\` | Tacos: \`${oldTacos}\`\n**+After:** Bal: \`${data.balance}\` | Tacos: \`${data.tacos}\`\nHourly: \`${data.income}\``);
                     i++;
                     if (i === results.length){
                         var string = out.join('\n━━━━━━━━━━━━━━\n')
