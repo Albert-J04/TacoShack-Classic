@@ -17,7 +17,7 @@ module.exports.run = async (bot, message, args, funcs) => {
         } else if (data) {
             if(!args[0] || !args[1]) return message.channel.send(incorrect);
             if(funcs.bet_check(args[1]) === false) return message.channel.send(incorrect)
-            if(args[0].toLowerCase() != "heads" || args[1].toLowerCase() != "tails")  return message.channel.send(incorrect) 
+            if(args[0].toLowerCase() != "heads" && args[0].toLowerCase() != "tails")  return message.channel.send(incorrect) 
             if(parseInt(args[1]) > 2000) return message.channel.send("Maximum bet is **$2,000**!")
             if(parseInt(args[1]) < 10) return message.channel.send("Minimum bet is **$10**!")
             if(data.balance < parseInt(args[1])) return message.channel.send(`You don't have enough money!`)
