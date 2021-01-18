@@ -28,7 +28,7 @@ module.exports = {
                     i++;
                     if (i === results.length){
                         var string = out.join('\n━━━━━━━━━━━━━━\n')
-                        var parts = string.split(/(.{2048})/).filter(O=>O)
+                        var parts = string.split(/(.{2040})/).filter(O=>O)
                         embeds = []
                         parts.forEach(async part => {
                             const embed = new Discord.MessageEmbed()
@@ -36,13 +36,10 @@ module.exports = {
                             embed.setColor(`BLURPLE`)
                             embeds.push(embed)
                         })
-                        if (embeds.length > 10){
-                            embeds.forEach(embed => {
-                                bot.logWebhook.send(embed)
-                            })
-                        }else{
-                            bot.logWebhook.send({embeds})
-                        }
+                        const split = chunkArray(embeds, 10)
+                        split.forEach(chunk => {
+                            bot.logWebhook.send({embeds: chunk})
+                        })
                         var d = new Date().toLocaleTimeString();
                         return bot.logWebhook.send(`✅ [\`${d}\`] Hourly Income Done!`);
                     }
@@ -50,4 +47,18 @@ module.exports = {
             })
         });
     }
+}
+
+
+function chunkArray(myArray, chunk_size){
+    var index = 0;
+    var arrayLength = myArray.length;
+    var tempArray = [];
+    
+    for (index = 0; index < arrayLength; index += chunk_size) {
+        myChunk = myArray.slice(index, index+chunk_size);
+        tempArray.push(myChunk);
+    }
+
+    return tempArray;
 }
