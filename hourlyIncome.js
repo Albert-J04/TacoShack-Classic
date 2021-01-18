@@ -28,12 +28,12 @@ module.exports = {
                     i++;
                     if (i === results.length){
                         var string = out.join('\n━━━━━━━━━━━━━━\n')
-                        var parts = string.split(/(.{2040})/).filter(O=>O)
+                        var parts = string.split(/(.{2048})/).filter(O=>O)
                         embeds = []
                         parts.forEach(async part => {
                             const embed = new Discord.MessageEmbed()
-                            embed.setDescription(part)
-                            embed.setColor(`BLURPLE`)
+                                .setDescription(part)
+                                .setColor(`BLURPLE`)
                             embeds.push(embed)
                         })
                         const split = chunkArray(embeds, 10)
