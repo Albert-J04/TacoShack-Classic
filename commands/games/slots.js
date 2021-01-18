@@ -73,7 +73,7 @@ module.exports.run = async (bot, message, args, funcs) => {
                     data.save().catch(err => console.log(err))
             
             
-                var slotseee = new Discord.MessagEmbed()
+                var slotseee = new Discord.MessageEmbed()
                 .setColor('0xffea07')
                 .setAuthor("---- Slots ----")
                 .setDescription(`
