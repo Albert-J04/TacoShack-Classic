@@ -89,11 +89,8 @@ module.exports.run = async (bot, message, args, funcs) => {
                 if((slot6 === slot7 && slot7 === slot8) || (slot7 === slot8 && slot8 === slot9) || (slot8 === slot9 && slot9 === slot10)) {
             
                     var reward = parseInt(args[0]) * 1.75
-                    shacks[message.author.id].balance = shacks[message.author.id].balance + reward
-            
-                    fs.writeFile("././data/shacks.json", JSON.stringify(shacks, null, 4), (err) => {
-                        if(err) console.log(err);
-                    })
+                    data.balance += reward
+                    data.save().catch(err => console.log(err))
             
             
                 var slotseee = new Discord.MessageEmbed()
