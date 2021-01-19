@@ -6,6 +6,11 @@ const fs = require("fs");
 
 module.exports.run = async (bot, message, args, funcs) => {
 
+
+    return message.channel.send({embed: {color: "dc0000", description: "❌ Slots has been disabled!"}})
+
+
+/*
     var incorrect = `Please use the correct format: \`${settings.prefix}slots [bet]\`\n\`Ex: ${settings.prefix}slots 100\``
     shacks.findOne({userID: message.author.id}, async (err, data) => {
         if (err){
@@ -149,6 +154,7 @@ module.exports.run = async (bot, message, args, funcs) => {
             }, 1500);
         }
     })
+    */
 }
 
 module.exports.help = {
